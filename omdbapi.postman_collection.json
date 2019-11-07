@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "4cd79828-4694-429c-9d3b-ed3bc91509d4",
+		"name": "omdbapi",
+		"description": "Movie test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search movie title positive case",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "634fdc39-4b27-44a9-a747-c0a198abf054",
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "13c39496-43f3-41fb-97cc-f7cb59347d1a",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Test Result contains : 'Lord'\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Lord\");",
+							"});",
+							"",
+							"pm.test(\"Check result contains keywords\", function () {",
+							"      pm.expect(pm.environment.get('keywords')).to.include('lord');",
+							"  });",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/?apikey={{api_key}}&s={{keywords}}",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{api_key}}"
+						},
+						{
+							"key": "s",
+							"value": "{{keywords}}"
+						}
+					]
+				},
+				"description": "Positive Case"
+			},
+			"response": []
+		},
+		{
+			"name": "search movie title negative case",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "634fdc39-4b27-44a9-a747-c0a198abf054",
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "13c39496-43f3-41fb-97cc-f7cb59347d1a",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Test Result contains : 'Lord'\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Lord\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/?apikey={{api_key}}&s={{error_keywords}}",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{api_key}}"
+						},
+						{
+							"key": "s",
+							"value": "{{error_keywords}}"
+						}
+					]
+				},
+				"description": "Positive Case"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "72016066-960a-4f8e-8bfc-6d5bf31f20f1",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
